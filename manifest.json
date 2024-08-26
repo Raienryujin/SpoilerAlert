@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "Spoiler Alert",
+    "version": "1.0",
+    "permissions": ["activeTab", "storage", "scripting"],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": {
+        "16": "icons/Spoiler.jfif",
+        "48": "icons/Spoiler.jfif",
+        "128": "icons/Spoiler.jfif"
+      }
+    },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
