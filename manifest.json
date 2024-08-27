@@ -1,24 +1,36 @@
 {
-    "manifest_version": 3,
-    "name": "Spoiler Alert",
-    "version": "1.0",
-    "permissions": ["activeTab", "storage", "scripting"],
-    "background": {
-      "service_worker": "background.js"
-    },
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": {
-        "16": "icons/Spoiler.jfif",
-        "48": "icons/Spoiler.jfif",
-        "128": "icons/Spoiler.jfif"
-      }
-    },
-    "content_scripts": [
-      {
-        "matches": ["<all_urls>"],
-        "js": ["content.js"]
-      }
-    ]
-  }
-  
+  "manifest_version": 3,
+  "name": "Spoiler Alert",
+  "version": "1.1",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/Spoiler.jfif",
+      "48": "icons/Spoiler.jfif",
+      "128": "icons/Spoiler.jfif"
+    }
+  },
+  "declarative_net_request": {
+    "rule_resources": [{
+      "id": "spoiler_rules",
+      "enabled": true,
+      "path": "rules.json"
+    }]
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
